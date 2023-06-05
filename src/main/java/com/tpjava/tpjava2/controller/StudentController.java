@@ -18,7 +18,7 @@ public class StudentController {
     @Autowired
     StudentsRepository studentsRepository;
 
-    @GetMapping("")
+    @GetMapping
     public String index(Model model){
         List<Students> studentsList = studentsRepository.findAll();
         model.addAttribute("studentsList", studentsList);

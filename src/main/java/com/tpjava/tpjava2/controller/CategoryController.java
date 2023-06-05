@@ -13,10 +13,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
+
     @Autowired
     CategoryRepository categoryRepository;
 
-    @GetMapping("")
+    @GetMapping
     public String index(Model model){
         List<Category> categoryList = categoryRepository.findAll();
         model.addAttribute("categoryList", categoryList);
