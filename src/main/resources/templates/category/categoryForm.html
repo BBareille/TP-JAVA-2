@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire catégorie</title>
+    <div th:replace="_fragments/header :: bootstrap"></div>
+</head>
+<body>
+<div th:replace="_fragments/navbar :: navbar"></div>
+  <form method="post" th:object="${category}" action="/category/post">
+    <h1>Ajout d'un formateur</h1>
+    <input hidden th:field="${category.id}" name="id">
+      <input placeholder="Nom de la catégorie" name="name" th:field="${category.name}">
+    <button class="btn btn-primary" type="submit">Valider</button>
+  </form>
+
+</body>
+</html>

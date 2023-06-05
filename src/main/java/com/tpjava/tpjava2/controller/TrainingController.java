@@ -86,7 +86,7 @@ public class TrainingController {
         Optional<Training> training = trainingRepository.findById(Long.valueOf(id));
         training.ifPresent(value -> trainingRepository.delete(value));
 
-        redirectAttributes.addFlashAttribute("success", "Une formation a été supprimer");
+        redirectAttributes.addFlashAttribute("success", "Une formation a été supprimé");
 
         return "redirect:/";
     }
