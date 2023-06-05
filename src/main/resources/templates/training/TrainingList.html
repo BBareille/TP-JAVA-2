@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Training list</title>
+    <div th:replace="_fragments/header :: bootstrap"></div>
+</head>
+<body>
+    <div th:replace="_fragments/navbar :: navbar"></div>
+    <div class="container-sm" th:if="${success} != null">
+        <div class="alert alert-success" role="alert" th:text="${success}"></div>
+    </div>
+    <div class="container mt-5">
+
+    <a href="addTraining" class="btn btn-primary">Ajouter une formation</a>
+
+        <table class="table">
+            <thead>
+                <th>Nom de la formation</th>
+                <th>Début de la formation</th>
+                <th>Durée</th>
+                <th>Prix</th>
+                <th>Catégorie</th>
+                <th>Niveau</th>
+                <th>Statut</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                <th:block th:each="training : ${TrainingList} ">
+                    <tr>
+                        <td th:text="${training.getName()}"></td>
+                        <td th:text="${training.getStart_at()}"></td>
+                        <td th:text="${training.getDuration()}+ jours"></td>
+                        <td th:text="${training.getPrice()}+ '€'"></td>
+                        <td th:text="${training.getCategory().getName()}"></td>
+                        <td th:text="${training.getLevel().getName()}"></td>
+                        <td th:if="${training.isOnline() == true}">Se passe en ligne</td>
+                        <td th:if="${training.isOnline() == false}">Se passe en présentiel</td>
+                        <td class="d-flex justify-content-around">
+                            <form method="POST" th:action="${training.getId()}">
+                                <button th:data-id="${training.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer</button>
+                            </form>
+                            <a th:href="'modifyTraining/' + ${training.getId()}" class="btn btn-secondary">Modifier</a>
+
+                        </td>
+                    </tr>
+                </th:block>
+            </tbody>
+
+        </table>
+    </div>
+    <div id="myModal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Suppression d'une formation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Êtes vous sûr de vouloir supprimer ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button id="delete-button" type="button" class="btn btn-danger">Supprimer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    function deleteFunction(id){
+        console.log(id)
+        $("#myModal")
+            .modal('show')
+
+        $("#delete-button").on("click", () => {
+            $.ajax({
+                url: "/"+ id,
+                type: "DELETE",
+                success: () => {
+                    window.location.replace("http://localhost:8080/")
+                },
+            })
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Training list</title>
+  <div th:replace="_fragments/header :: bootstrap"></div>
+</head>
+<body>
+<div th:replace="_fragments/navbar :: navbar"></div>
+<div class="container-sm" th:if="${success} != null">
+  <div class="alert alert-success" role="alert" th:text="${success}"></div>
+</div>
+<div class="container mt-5">
+
+  <a href="addTraining" class="btn btn-primary disabled">Ajouter une catégorie</a>
+
+  <table class="table">
+    <thead>
+    <th>Nom de la catégorie</th>
+    </thead>
+    <tbody>
+    <th:block th:each="category : ${categoryList} ">
+      <tr>
+        <td th:text="${category.getName()}"></td>
+        <td class="d-flex justify-content-around">
+          <form method="POST" th:action="${category.getId()}">
+            <button th:data-id="${category.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer</button>
+          </form>
+          <a th:href="'modifyCategory/' + ${category.getId()}" class="btn btn-secondary">Modifier</a>
+
+        </td>
+      </tr>
+    </th:block>
+    </tbody>
+
+  </table>
+</div>
+<div id="myModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Suppression d'une catégorie</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes vous sûr de vouloir supprimer ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button id="delete-button" type="button" class="btn btn-danger">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+<script>
+  function deleteFunction(id){
+    console.log(id)
+    $("#myModal")
+            .modal('show')
+
+    $("#delete-button").on("click", () => {
+      $.ajax({
+        url: "/category/"+ id,
+        type: "DELETE",
+        success: () => {
+          window.location.replace("http://localhost:8080/category")
+        },
+      })
+    })
+  }
+</script>
+</html>
