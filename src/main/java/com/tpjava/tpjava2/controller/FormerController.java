@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/former")
+@RequestMapping("/formers")
 public class FormerController {
 
     @Autowired
