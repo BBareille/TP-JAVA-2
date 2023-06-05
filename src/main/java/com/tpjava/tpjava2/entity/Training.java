@@ -36,7 +36,7 @@ public class Training {
         return "Training{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", start_at='" + startAt + '\'' +
+                ", startAt='" + startAt + '\'' +
                 ", duration=" + duration +
                 ", price=" + price +
                 ", category=" + category +
