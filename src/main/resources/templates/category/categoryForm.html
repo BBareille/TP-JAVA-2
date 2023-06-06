@@ -8,7 +8,7 @@
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
   <form method="post" th:object="${category}" action="/category/post">
-    <h1>Ajout d'un formateur</h1>
+    <h1>Ajout d'une catégorie</h1>
     <input hidden th:field="${category.id}" name="id">
       <input placeholder="Nom de la catégorie" name="name" th:field="${category.name}">
     <button class="btn btn-primary" type="submit">Valider</button>
