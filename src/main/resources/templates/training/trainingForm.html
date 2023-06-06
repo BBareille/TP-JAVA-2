@@ -7,33 +7,54 @@
 </head>
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
-  <form method="post" th:object="${training}" action="/post">
+
+  <div class="d-flex justify-content-center">
+    <form method="post" th:object="${training}" action="/post">
     <h1>Ajout d'une formation</h1>
-    <input hidden th:field="${training.id}" name="id">
-    <input placeholder="Nom de la formation" name="name" th:field="${training.name}">
-    <div>
-      <input th:field="${training.online}" id="online" type="checkbox" name="online">
-      <label for="online">Se passe en ligne</label>
+
+    <div class="container">
+      <input hidden th:field="${training.id}" name="id">
+      <div class="mb-3">
+        <label class="form-label">Nom de la formation</label>
+        <input class="form-control" placeholder="Nom de la formation" name="name" th:field="${training.name}">
+      </div>
+      <div class="mb-3">
+        <input class="form-check-input" th:field="${training.online}" id="online" type="checkbox" name="online">
+        <label class="form-check-label" for="online">Se passe en ligne</label>
+      </div>
+      <div class="form-group mb-3">
+        <label class="form-check-label">Durée de la formation: </label>
+        <input class="form-control" th:field="${training.duration}" placeholder="Durée" type="number" name="duration"/>
+      </div>
+      <div class="form-group mb-3">
+        <label class="form-check-label">Prix de la formation: </label>
+        <input class="form-control" th:field="${training.price}" placeholder="Prix" type="number" name="price"/>
+      </div>
+      <div class="mb-3">
+        <label class="form-check-label">Date de début de la formation: </label>
+        <input class="form-control" th:field="${training.startAt}" placeholder="Date de début" type="date" name="date"/>
+      </div>
+      <div class="form-group mb-3">
+      <label class="form-check-label">Catégorie de la formation: </label>
+      <select class="form-select" th:field="${training.category}" name="category">
+        <th:block th:each="category : ${categoryList}">
+          <option th:value="${category.getId()}" th:text="${category.getName()}"></option>
+        </th:block>
+      </select>
+      </div>
+      <div class="form-group mb-3">
+        <label class="form-check-label">Niveau de la formation: </label>
+      <select class="form-select" th:field="${training.level}" name="level">
+        <th:block th:each="level : ${levelList}">
+          <option th:value="${level.getId()}" th:text="${level.getName()}"></option>
+        </th:block>
+      </select>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-primary" type="submit">Valider</button>
+      </div>
     </div>
-    <input th:field="${training.duration}" placeholder="Durée" type="number" name="duration"/>
-    <input th:field="${training.price}" placeholder="Prix" type="number" name="price"/>
-    <input th:field="${training.startAt}" placeholder="Date de début" type="date" name="date"/>
-
-    <select th:field="${training.category}" name="category">
-      <th:block th:each="category : ${categoryList}">
-        <option th:value="${category.getId()}" th:text="${category.getName()}"></option>
-      </th:block>
-    </select>
-
-    <select th:field="${training.level}" name="level">
-      <th:block th:each="level : ${levelList}">
-        <option th:value="${level.getId()}" th:text="${level.getName()}"></option>
-      </th:block>
-    </select>
-
-    <button class="btn btn-primary" type="submit">Valider</button>
-
   </form>
-
+</div>
 </body>
 </html>
