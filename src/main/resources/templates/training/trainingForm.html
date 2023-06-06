@@ -9,7 +9,7 @@
 <div th:replace="_fragments/navbar :: navbar"></div>
 
   <div class="d-flex justify-content-center">
-    <form method="post" th:object="${training}" action="/post">
+    <form method="post" th:object="${training}" action="/training/post">
     <h1>Ajout d'une formation</h1>
 
     <div class="container">
@@ -56,5 +56,6 @@
     </div>
   </form>
 </div>
+<div th:replace="_fragments/footer"></div>
 </body>
 </html>

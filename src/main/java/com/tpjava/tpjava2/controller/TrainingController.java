@@ -15,7 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@Controller()
+@RequestMapping("/training")
 public class TrainingController {
 
     @Autowired

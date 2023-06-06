@@ -40,7 +40,7 @@
                             <form method="POST" th:action="${training.getId()}">
                                 <button th:data-id="${training.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer</button>
                             </form>
-                            <a th:href="'modify/' + ${training.getId()}" class="btn btn-secondary">Modifier</a>
+                            <a th:href="'/training/modify/' + ${training.getId()}" class="btn btn-secondary">Modifier</a>
 
                         </td>
                     </tr>
@@ -79,10 +79,11 @@
                 type: "POST",
                 success: () => {
                     $('#myModal').modal('hide')
-                    window.location.assign("/")
+                    window.location.assign("/training/")
                 }
             })
         })
     }
 </script>
+<div th:replace="_fragments/footer"></div>
 </html>
