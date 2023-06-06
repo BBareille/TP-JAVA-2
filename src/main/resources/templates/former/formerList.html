@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Former list</title>
+    <div th:replace="_fragments/header :: bootstrap"></div>
+</head>
+<body>
+<div th:replace="_fragments/navbar :: navbar"></div>
+<div class="container-sm" th:if="${success} != null">
+    <div class="alert alert-success" role="alert" th:text="${success}"></div>
+</div>
+<div class="container mt-5">
+    <!--<a href="addFormer" class="btn btn-primary disabled">Ajouter un nouveau formateur</a>-->
+
+    <table class="table">
+        <thead>
+        <th>Nom du Formateur</th>
+        <th>Prénom du Formateur</th>
+        </thead>
+        <tbody>
+        <th:block th:each="former : ${formerList} ">
+            <tr>
+                <td th:text="${former.getLastName()()()}"></td>
+                <td th:text="${former.getFirstName()()}"></td>
+                <td class="d-flex justify-content-around">
+                    <form method="POST" th:action="${former.getId()}">
+                        <button th:data-id="${former.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer</button>
+                    </form>
+                    <a th:href="'modify/' + ${former.getId()}" class="btn btn-secondary">Modifier</a>
+
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

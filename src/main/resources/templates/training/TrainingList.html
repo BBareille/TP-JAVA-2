@@ -29,7 +29,7 @@
                 <th:block th:each="training : ${TrainingList} ">
                     <tr>
                         <td th:text="${training.getName()}"></td>
-                        <td th:text="${training.getStart_at()}"></td>
+                        <td th:text="${training.getStartAt()}"></td>
                         <td th:text="${training.getDuration()}+ jours"></td>
                         <td th:text="${training.getPrice()}+ '€'"></td>
                         <td th:text="${training.getCategory().getName()}"></td>

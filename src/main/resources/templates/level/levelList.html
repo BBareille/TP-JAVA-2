@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Level list</title>
+    <div th:replace="_fragments/header :: bootstrap"></div>
+</head>
+<body>
+<div th:replace="_fragments/navbar :: navbar"></div>
+<div class="container-sm" th:if="${success} != null">
+    <div class="alert alert-success" role="alert" th:text="${success}"></div>
+</div>
+<div class="container mt-5">
+    <!--<a href="addLevel" class="btn btn-primary disabled">Ajouter un niveau de difficulte</a>-->
+
+    <table class="table">
+        <thead>
+        <th>Nom du niveau de difficulté</th>
+        </thead>
+        <tbody>
+        <th:block th:each="level : ${levelList} ">
+            <tr>
+                <td th:text="${level.getName()}"></td>
+                <td class="d-flex justify-content-around">
+                    <form method="POST" th:action="${level.getId()}">
+                        <button th:data-id="${level.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer</button>
+                    </form>
+                    <a th:href="'modify/' + ${level.getId()}" class="btn btn-secondary">Modifier</a>
+
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
