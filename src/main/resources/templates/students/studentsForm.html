@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire étudiant</title>
+    <div th:replace="_fragments/header :: bootstrap"></div>
+</head>
+<body>
+<div th:replace="_fragments/navbar :: navbar"></div>
+  <form method="post" th:object="${student}" action="/students/post">
+    <h1>Ajout d'un étudiant</h1>
+    <input hidden th:field="${student.id}" name="id">
+    <input placeholder="Nom de l'étudiant" name="firstName" th:field="${student.firstName}">
+    <input placeholder="Prénom de l'étudiant" name="lastName" th:field="${student.lastName}">
+    <button class="btn btn-primary" type="submit">Valider</button>
+  </form>
+
+</body>
+</html>

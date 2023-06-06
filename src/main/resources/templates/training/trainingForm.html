@@ -17,7 +17,7 @@
       <label for="online">Se passe en ligne</label>
     <input th:field="${training.duration}" placeholder="Durée" type="number" name="duration"/>
     <input th:field="${training.price}" placeholder="Prix" type="number" name="price"/>
-    <input th:field="${training.start_at}" placeholder="Date de début" type="date" name="date"/>
+    <input th:field="${training.startAt}" placeholder="Date de début" type="date" name="date"/>
 
     <select th:field="${training.category}" name="category">
       <th:block th:each="category : ${categoryList}">
