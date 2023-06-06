@@ -12,8 +12,8 @@
     <input hidden th:field="${former.id}" name="id">
       <input placeholder="Nom du formateur" name="firstName" th:field="${former.firstName}">
       <input placeholder="Prénom du formateur" name="lastName" th:field="${former.lastName}">
-    <button class="btn btn-primary" type="submit">Valider</button>
+    <button class="btn btn-primary" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
   </form>
-
+<div th:replace="_fragments/footer"></div>
 </body>
 </html>

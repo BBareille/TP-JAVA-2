@@ -12,8 +12,8 @@
     <input hidden th:field="${level.id}" name="id">
     <input placeholder="Difficulté" name="name" th:field="${level.name}">
 
-      <button class="btn btn-primary" type="submit">Valider</button>
+      <button class="btn btn-primary" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
   </form>
-
+<div th:replace="_fragments/footer"></div>
 </body>
 </html>

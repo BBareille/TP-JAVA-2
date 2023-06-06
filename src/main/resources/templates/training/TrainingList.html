@@ -12,7 +12,7 @@
     </div>
     <div class="container mt-5">
 
-    <a href="add" class="btn btn-primary">Ajouter une formation</a>
+    <a href="add" class="btn btn-primary">Ajouter une formation  <i class="fa-solid fa-plus"></i></a>
 
         <table class="table">
             <thead>
@@ -38,9 +38,9 @@
                         <td th:if="${training.isOnline() == false}">Se passe en présentiel</td>
                         <td class="d-flex justify-content-around">
                             <form method="POST" th:action="${training.getId()}">
-                                <button th:data-id="${training.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer</button>
+                                <button th:data-id="${training.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer  <i class="fa-regular fa-trash-can"></i></button>
                             </form>
-                            <a th:href="'modify/' + ${training.getId()}" class="btn btn-secondary">Modifier</a>
+                            <a th:href="'/training/modify/' + ${training.getId()}" class="btn btn-secondary">Modifier  <i class="fa-solid fa-pen-to-square"></i></a>
 
                         </td>
                     </tr>
@@ -60,8 +60,8 @@
                     <p>Êtes vous sûr de vouloir supprimer ?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button id="delete-button" type="button" class="btn btn-danger">Supprimer</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer  <i class="fa-solid fa-xmark"></i></button>
+                    <button id="delete-button" type="button" class="btn btn-danger">Supprimer  <i class="fa-regular fa-trash-can"></i></button>
                 </div>
             </div>
         </div>
@@ -79,10 +79,11 @@
                 type: "POST",
                 success: () => {
                     $('#myModal').modal('hide')
-                    window.location.assign("/")
+                    window.location.assign("/training/")
                 }
             })
         })
     }
 </script>
+<div th:replace="_fragments/footer"></div>
 </html>
