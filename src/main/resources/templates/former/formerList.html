@@ -27,7 +27,7 @@
                     <form method="POST" th:action="${former.getId()}">
                         <button th:data-id="${former.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer</button>
                     </form>
-                    <a th:href="'modifyLevel/' + ${former.getId()}" class="btn btn-secondary">Modifier</a>
+                    <a th:href="'modify/' + ${former.getId()}" class="btn btn-secondary">Modifier</a>
 
                 </td>
             </tr>
