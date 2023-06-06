@@ -11,7 +11,7 @@
     <div class="alert alert-success" role="alert" th:text="${success}"></div>
 </div>
 <div class="container mt-5">
-    <!--<a href="addFormer" class="btn btn-primary disabled">Ajouter un nouveau formateur</a>-->
+    <a href="/formers/add" class="btn btn-primary">Ajouter un nouveau formateur</a>
 
     <table class="table">
         <thead>
@@ -21,13 +21,13 @@
         <tbody>
         <th:block th:each="former : ${formerList} ">
             <tr>
-                <td th:text="${former.getLastName()()()}"></td>
-                <td th:text="${former.getFirstName()()}"></td>
+                <td th:text="${former.getLastName()}"></td>
+                <td th:text="${former.getFirstName()}"></td>
                 <td class="d-flex justify-content-around">
                     <form method="POST" th:action="${former.getId()}">
                         <button th:data-id="${former.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer</button>
                     </form>
-                    <a th:href="'modify/' + ${former.getId()}" class="btn btn-secondary">Modifier</a>
+                    <a th:href="'/formers/modify/' + ${former.getId()}" class="btn btn-secondary">Modifier</a>
 
                 </td>
             </tr>
@@ -35,5 +35,43 @@
         </tbody>
     </table>
 </div>
+
+<div id="myModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Suppression d'un formateur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Êtes vous sûr de vouloir supprimer ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button id="delete-button" type="button" class="btn btn-danger">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
+
+<script>
+    function deleteFunction(id){
+        $("#myModal")
+            .modal('show')
+
+        $("#delete-button").on("click", () => {
+            $.ajax({
+                url: "/formers/" + id,
+                type: "POST",
+                success: () => {
+                    $('#myModal').modal('hide')
+                    window.location.assign("/formers/")
+                }
+            })
+        })
+    }
+</script>
+
 </html>

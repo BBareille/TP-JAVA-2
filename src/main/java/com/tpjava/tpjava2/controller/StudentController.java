@@ -64,7 +64,7 @@ public class StudentController {
         return "redirect:";
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}")
     public String delete(@PathVariable String id, Model model, RedirectAttributes redirectAttributes)
     {
         Optional<Students> student = studentsRepository.findById(Long.valueOf(id));

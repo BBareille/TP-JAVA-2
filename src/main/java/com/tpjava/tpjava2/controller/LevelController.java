@@ -63,7 +63,7 @@ public class LevelController {
         return "redirect:";
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}")
     public String delete(@PathVariable String id, Model model, RedirectAttributes redirectAttributes)
     {
         Optional<Level> student = levelRepository.findById(Long.valueOf(id));

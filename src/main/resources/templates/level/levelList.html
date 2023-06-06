@@ -11,7 +11,8 @@
     <div class="alert alert-success" role="alert" th:text="${success}"></div>
 </div>
 <div class="container mt-5">
-    <!--<a href="addLevel" class="btn btn-primary disabled">Ajouter un niveau de difficulte</a>-->
+
+    <a href="/level/add" class="btn btn-primary">Ajouter un niveau de difficulte</a>
 
     <table class="table">
         <thead>
@@ -25,7 +26,7 @@
                     <form method="POST" th:action="${level.getId()}">
                         <button th:data-id="${level.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer</button>
                     </form>
-                    <a th:href="'modify/' + ${level.getId()}" class="btn btn-secondary">Modifier</a>
+                    <a th:href="'/level/modify/' + ${level.getId()}" class="btn btn-secondary">Modifier</a>
 
                 </td>
             </tr>
@@ -33,5 +34,41 @@
         </tbody>
     </table>
 </div>
+
+<div id="myModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Suppression d'un formateur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Êtes vous sûr de vouloir supprimer ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button id="delete-button" type="button" class="btn btn-danger">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
+<script>
+    function deleteFunction(id){
+        $("#myModal")
+            .modal('show')
+
+        $("#delete-button").on("click", () => {
+            $.ajax({
+                url: "/level/" + id,
+                type: "POST",
+                success: () => {
+                    $('#myModal').modal('hide')
+                    window.location.assign("/level/")
+                }
+            })
+        })
+    }
+</script>
 </html>

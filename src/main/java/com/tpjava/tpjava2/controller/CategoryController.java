@@ -62,7 +62,7 @@ public class CategoryController {
         return "redirect:";
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}")
     public String delete(@PathVariable String id, Model model, RedirectAttributes redirectAttributes)
     {
         Optional<Category> category = categoryRepository.findById(Long.valueOf(id));
