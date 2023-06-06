@@ -10,11 +10,11 @@
   <form method="post" th:object="${training}" action="http://localhost:8080/addTraining">
     <h1>Ajout d'une formation</h1>
     <input hidden th:field="${training.id}" name="id">
-    <input placeholder="Nom de la formation" name="name" th:field="${training.name}">
     <div>
+      <input placeholder="Nom de la formation" name="name" th:field="${training.name}">
+    </div>
       <input th:field="${training.online}" id="online" type="checkbox" name="online">
       <label for="online">Se passe en ligne</label>
-    </div>
     <input th:field="${training.duration}" placeholder="Durée" type="number" name="duration"/>
     <input th:field="${training.price}" placeholder="Prix" type="number" name="price"/>
     <input th:field="${training.start_at}" placeholder="Date de début" type="date" name="date"/>
