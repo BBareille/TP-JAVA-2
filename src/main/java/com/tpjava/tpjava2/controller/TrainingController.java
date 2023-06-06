@@ -2,6 +2,7 @@ package com.tpjava.tpjava2.controller;
 
 import com.tpjava.tpjava2.entity.Category;
 import com.tpjava.tpjava2.entity.Level;
+import com.tpjava.tpjava2.entity.Students;
 import com.tpjava.tpjava2.entity.Training;
 import com.tpjava.tpjava2.repository.CategoryRepository;
 import com.tpjava.tpjava2.repository.LevelRepository;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -101,6 +103,18 @@ public class TrainingController {
         model.addAttribute("training", trainingOptional.get());
 
         return "training/trainingDetails";
+    }
+
+    @GetMapping("/test")
+    public String tryToDelete()
+    {
+        Optional<Training> trainingOptional = trainingRepository.findById(1L);
+        List<Students> studentsList = trainingOptional.get().getStudentsList();
+        System.out.println(studentsList.remove(0));
+        Training training = trainingOptional.get();
+        training.setStudentsList(studentsList);
+        trainingRepository.save(training);
+        return "training/trainingList";
     }
 
 
