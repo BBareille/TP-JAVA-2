@@ -34,7 +34,7 @@ public class TrainingController {
         return "training/TrainingList";
     }
 
-    @GetMapping("/addTraining")
+    @GetMapping("/add")
     public String getForm(Model model)
     {
         List<Level> levelList = levelRepository.findAll();
@@ -49,7 +49,7 @@ public class TrainingController {
         return "training/trainingForm";
     }
 
-    @GetMapping("/modifyTraining/{id}")
+    @GetMapping("/modify/{id}")
     public String updateForm(@PathVariable String id, Model model)
     {
         Optional<Training> training = trainingRepository.findById(Long.valueOf(id));
@@ -62,7 +62,7 @@ public class TrainingController {
         return "training/trainingForm";
     }
 
-    @PostMapping("/addTraining")
+    @PostMapping("/post")
     public String postForm(@ModelAttribute Training training, Model model, RedirectAttributes redirectAttributes)
     {
         if(training.getId() != null){
@@ -80,7 +80,7 @@ public class TrainingController {
         return "redirect:";
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}")
     public String delete(@PathVariable String id, Model model, RedirectAttributes redirectAttributes)
     {
         Optional<Training> training = trainingRepository.findById(Long.valueOf(id));

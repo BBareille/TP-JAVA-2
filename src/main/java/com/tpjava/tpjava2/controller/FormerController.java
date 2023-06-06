@@ -63,7 +63,7 @@ public class FormerController {
         return "redirect:";
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}")
     public String delete(@PathVariable String id, Model model, RedirectAttributes redirectAttributes)
     {
         Optional<Former> student = formerRepository.findById(Long.valueOf(id));

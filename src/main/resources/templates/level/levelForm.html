@@ -8,10 +8,11 @@
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
   <form method="post" th:object="${level}" action="/level/post">
-    <h1>Ajout d'un étudiant</h1>
+    <h1>Ajout d'un niveau de difficulté</h1>
     <input hidden th:field="${level.id}" name="id">
     <input placeholder="Difficulté" name="name" th:field="${level.name}">
-    <button class="btn btn-primary" type="submit">Valider</button>
+
+      <button class="btn btn-primary" type="submit">Valider</button>
   </form>
 
 </body>

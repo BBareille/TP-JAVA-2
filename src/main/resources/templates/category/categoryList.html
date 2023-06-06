@@ -61,12 +61,12 @@
 
     $("#delete-button").on("click", () => {
       $.ajax({
-        url: "/category/"+ id,
-        type: "DELETE",
+        url: "/category/" + id,
+        type: "POST",
         success: () => {
           $('#myModal').modal('hide')
-          window.location.assign("http://localhost:8080/category")
-        },
+          window.location.assign("/category/")
+        }
       })
     })
   }

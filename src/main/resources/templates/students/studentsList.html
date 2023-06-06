@@ -26,7 +26,7 @@
           <form method="POST" th:action="${student.getId()}">
             <button th:data-id="${student.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer</button>
           </form>
-          <a th:href="'modify/' + ${student.getId()}" class="btn btn-secondary">Modifier</a>
+          <a th:href="'/students/modify/' + ${student.getId()}" class="btn btn-secondary">Modifier</a>
 
         </td>
       </tr>
@@ -56,17 +56,17 @@
 </body>
 <script>
   function deleteFunction(id){
-    console.log(id)
     $("#myModal")
             .modal('show')
 
     $("#delete-button").on("click", () => {
       $.ajax({
-        url: "/students/"+ id,
-        type: "DELETE",
+        url: "/students/" + id,
+        type: "POST",
         success: () => {
-          window.location.replace("http://localhost:8080/students")
-        },
+          $('#myModal').modal('hide')
+          window.location.assign("/students/")
+        }
       })
     })
   }

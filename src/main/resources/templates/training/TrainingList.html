@@ -12,7 +12,7 @@
     </div>
     <div class="container mt-5">
 
-    <a href="addTraining" class="btn btn-primary">Ajouter une formation</a>
+    <a href="add" class="btn btn-primary">Ajouter une formation</a>
 
         <table class="table">
             <thead>
@@ -40,7 +40,7 @@
                             <form method="POST" th:action="${training.getId()}">
                                 <button th:data-id="${training.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer</button>
                             </form>
-                            <a th:href="'modifyTraining/' + ${training.getId()}" class="btn btn-secondary">Modifier</a>
+                            <a th:href="'modify/' + ${training.getId()}" class="btn btn-secondary">Modifier</a>
 
                         </td>
                     </tr>
@@ -75,11 +75,12 @@
 
         $("#delete-button").on("click", () => {
             $.ajax({
-                url: "/"+ id,
-                type: "DELETE",
+                url: "/" + id,
+                type: "POST",
                 success: () => {
-                    window.location.replace("http://localhost:8080/")
-                },
+                    $('#myModal').modal('hide')
+                    window.location.assign("/")
+                }
             })
         })
     }
