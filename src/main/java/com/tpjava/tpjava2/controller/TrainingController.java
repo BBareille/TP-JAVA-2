@@ -92,5 +92,16 @@ public class TrainingController {
         return "redirect:/";
     }
 
+    @GetMapping("/{id}")
+    public String details(@PathVariable String id, Model model)
+    {
+        Optional<Training> trainingOptional = trainingRepository.findById(Long.valueOf(id));
+        if(!trainingOptional.isPresent()) return "redirect:/";
+
+        model.addAttribute("training", trainingOptional.get());
+
+        return "training/trainingDetails";
+    }
+
 
 }

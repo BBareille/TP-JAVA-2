@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails d'une formation</title>
+    <div th:replace="_fragments/header :: bootstrap"></div>
+</head>
+<body>
+  <div th:text="${training.getName()}"></div>
+  <div th:text="${training.getLevel().getName()}"></div>
+  <div th:text="${training.getCategory().getName()}"></div>
+  <div th:text="${training.getPrice()}"></div>
+  <div th:text="${training.getDuration()}"></div>
+  <div th:text="${training.getStartAt()}"></div>
+  <div th:each="former : ${training.getFormerList()}">
+    <div th:text="${former.getFirstName()+ ' ' + former.getLastName()}"></div>
+  </div>
+  <div th:each="former : ${training.getStudentsList()}">
+    <div th:text="${former.getFirstName()+ ' ' + former.getLastName()}"></div>
+  </div>
+</body>
+
+<div th:replace="_fragments/footer"></div>
+
+</html>

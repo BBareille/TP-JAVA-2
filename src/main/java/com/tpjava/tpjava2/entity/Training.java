@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter @Setter
 @NoArgsConstructor
@@ -29,6 +32,22 @@ public class Training {
     private Level level;
 
     private boolean online;
+
+    @ManyToMany( cascade = CascadeType.ALL )
+    @JoinTable(
+            name = "training_to_students",
+            joinColumns = @JoinColumn ( name = "idTraining"),
+            inverseJoinColumns = @JoinColumn ( name = "idStudents")
+    )
+    private List<Students> studentsList = new ArrayList<>();
+
+    @ManyToMany( cascade = CascadeType.ALL )
+    @JoinTable(
+            name = "training_to_former",
+            joinColumns = @JoinColumn ( name = "idTraining"),
+            inverseJoinColumns = @JoinColumn ( name = "idFormer")
+    )
+    private List<Former> formerList = new ArrayList<>();
 
 
     @Override
