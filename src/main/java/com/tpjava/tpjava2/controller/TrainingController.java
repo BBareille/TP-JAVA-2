@@ -100,7 +100,7 @@ public class TrainingController {
     public String details(@PathVariable String id, Model model)
     {
         Optional<Training> trainingOptional = trainingRepository.findById(Long.valueOf(id));
-        if(!trainingOptional.isPresent()) return "redirect:/";
+        if(trainingOptional.isEmpty()) return "redirect:/";
 
         model.addAttribute("training", trainingOptional.get());
 
@@ -119,9 +119,18 @@ public class TrainingController {
 
         filteredStudents.removeIf(studentsListInTraining::contains);
 
-        model.addAttribute("training", trainingOptional.get());
+        Training training = trainingOptional.get();
+
+        model.addAttribute("training", training);
         model.addAttribute("students", filteredStudents);
         return "training/trainingFormStudents";
+    }
+
+    @PostMapping("/{id}/students")
+    public String postTrainingFormStudents(@PathVariable String id, @ModelAttribute Training training)
+    {
+        trainingRepository.save(training);
+        return "redirect:/training/"+ id;
     }
 
     @GetMapping("/{id}/formers")
