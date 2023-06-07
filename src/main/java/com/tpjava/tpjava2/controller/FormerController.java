@@ -2,6 +2,7 @@ package com.tpjava.tpjava2.controller;
 
 import com.tpjava.tpjava2.entity.Former;
 import com.tpjava.tpjava2.entity.Level;
+import com.tpjava.tpjava2.entity.Training;
 import com.tpjava.tpjava2.repository.FormerRepository;
 import com.tpjava.tpjava2.repository.LevelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,18 @@ public class FormerController {
         redirectAttributes.addFlashAttribute("success", "Un formateur a été supprimé");
 
         return "redirect:";
+    }
+
+    @GetMapping("/teachedTrainings/{id}")
+    public String showTeachedTrainings(@PathVariable("id") Long id, Model model) {
+        Optional<Former> former = formerRepository.findById(id);
+        if (former.isPresent()) {
+            List<Training> teachedTrainings = former.get().getTrainingList();
+            model.addAttribute("former", former.get());
+            model.addAttribute("teachedTrainings", teachedTrainings);
+            return "former/teachedTrainings";
+        }
+        return "redirect:formers";
     }
 
 }
