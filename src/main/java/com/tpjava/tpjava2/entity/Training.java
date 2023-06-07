@@ -33,7 +33,7 @@ public class Training {
 
     private boolean online;
 
-    @ManyToMany( cascade = CascadeType.DETACH, targetEntity = Students.class)
+    @ManyToMany( cascade = CascadeType.ALL, targetEntity = Students.class)
     @JoinTable(
             name = "training_to_students",
             joinColumns = @JoinColumn ( name = "idTraining"),
@@ -41,7 +41,7 @@ public class Training {
     )
     private List<Students> studentsList = new ArrayList<>();
 
-    @ManyToMany( cascade = CascadeType.DETACH , targetEntity = Former.class)
+    @ManyToMany( cascade = CascadeType.ALL , targetEntity = Former.class)
     @JoinTable(
             name = "training_to_former",
             joinColumns = @JoinColumn ( name = "idTraining"),

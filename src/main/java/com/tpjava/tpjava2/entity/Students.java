@@ -19,7 +19,7 @@ public class Students {
     String firstName;
     String lastName;
 
-    @ManyToMany(mappedBy = "studentsList", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "studentsList", cascade = { CascadeType.ALL })
     private List<Training> trainingList = new ArrayList<>();
 
     public String getFullName(){

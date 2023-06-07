@@ -19,6 +19,6 @@ public class Former {
     private String firstName;
     private String lastName;
 
-    @ManyToMany(mappedBy = "formerList", cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Training.class)
     private List<Training> trainingList = new ArrayList<>();
 }
