@@ -69,7 +69,8 @@
 
 
   <div class="d-flex justify-content-center">
-    <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${training}" action="/training/post" onsubmit="validateForm(event)">
+
+    <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${training}" action="/training/post">
       <div class="container mt-4">
         <div class="row">
           <div class="col-md-12 text-center">
@@ -91,15 +92,15 @@
       </div>
       <div class="form-group mb-3">
         <label class="form-check-label">Durée de la formation: </label>
-        <input class="form-control" placeholder="Durée" type="text" name="duration" required/>
+        <input class="form-control" placeholder="Durée" type="number" name="duration" th:min="1" th:max="365" th:field="${training.duration}" required/>
       </div>
       <div class="form-group mb-3">
         <label class="form-check-label">Prix de la formation: </label>
-        <input class="form-control" placeholder="Prix" type="text" name="price" required/>
+        <input class="form-control" placeholder="Prix" type="number" name="price" th:min="0" th:max="100000" th:field="${training.price}" required/>
       </div>
       <div class="mb-3">
         <label class="form-check-label">Date de début de la formation: </label>
-        <input class="form-control" placeholder="Date de début" type="text" name="startAt" required/>
+        <input class="form-control" placeholder="Date de début" type="date" name="startAt" th:field="${training.startAt}" required/>
       </div>
       <div class="form-group mb-3">
         <label class="form-check-label">Catégorie de la formation: </label>
@@ -118,7 +119,7 @@
         </select>
       </div>
       <div class="d-flex justify-content-center">
-        <button class="btn btn-primary mb-4" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
+        <button class="btn btn-primary mb-4" type="submit">Valider <i class="fa-solid fa-check"></i></button>
       </div>
     </div>
   </form>
