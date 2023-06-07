@@ -19,6 +19,13 @@
       <th>Nom de l'étudiant</th>
     </thead>
     <tbody>
+    <div class="container mt-4 mb-4">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h3 class="animate-charcter">Liste des étudiants</h3>
+        </div>
+      </div>
+    </div>
     <th:block th:each="student : ${studentsList} ">
       <tr>
         <td th:text="${student.getFullName()}"></td>

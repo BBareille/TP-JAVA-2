@@ -11,10 +11,15 @@
         <div class="alert alert-success" role="alert" th:text="${success}"></div>
     </div>
     <div class="container mt-5">
-
     <a href="add" class="btn btn-primary">Ajouter une formation  <i class="fa-solid fa-plus"></i></a>
-
         <table class="table">
+            <div class="container mt-4 mb-4">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h3 class="animate-charcter">Liste des formations</h3>
+                    </div>
+                </div>
+            </div>
             <thead>
                 <th>Nom de la formation</th>
                 <th>Début de la formation</th>
@@ -41,7 +46,6 @@
                                 <button th:data-id="${training.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer  <i class="fa-regular fa-trash-can"></i></button>
                             </form>
                             <a th:href="'/training/modify/' + ${training.getId()}" class="btn btn-secondary">Modifier  <i class="fa-solid fa-pen-to-square"></i></a>
-
                         </td>
                     </tr>
                 </th:block>
