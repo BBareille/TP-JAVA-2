@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <title>Formulaire catégorie</title>
     <div th:replace="_fragments/header :: bootstrap"></div>
+    <style>
+        /* Adjust the width of form inputs */
+        .form-input {
+            width: 100%; /* You can adjust the width as needed */
+        }
+    </style>
 </head>
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
-  <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${category}" action="/category/post">
+  <form class="needs-validation d-flex flex-column align-items-center justify-content-center" method="post" th:object="${category}" action="/category/post" onsubmit="event.preventDefault()">
       <div class="container mt-4">
           <div class="row">
               <div class="col-md-12 text-center">
@@ -17,7 +23,11 @@
       </div>
       <br>
     <input hidden th:field="${category.id}" name="id">
-      <input placeholder="Nom de la catégorie" name="name" th:field="${category.name}">
+        <div class="mb-3">
+            <label class="form-label">Nom de la catégorie</label>
+            <input class="form-control form-input" placeholder="Nom de la catégorie" name="name" th:field="${category.name}" required>
+            <div class="invalid-feedback">Veuillez saisir un nom de catégorie valide.</div>
+        </div>
       <br>
     <button class="btn btn-primary mb-4" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
   </form>

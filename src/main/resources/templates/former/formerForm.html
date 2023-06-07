@@ -4,10 +4,41 @@
     <meta charset="UTF-8">
     <title>Formulaire formateur</title>
     <div th:replace="_fragments/header :: bootstrap"></div>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <script>
+        function displayError(errorMessage) {
+            alert(errorMessage);
+        }
+
+        function validateForm(event) {
+            event.preventDefault(); // Prevents the form from submitting and redirecting
+
+            var firstName = document.getElementsByName("firstName")[0].value;
+            var lastName = document.getElementsByName("lastName")[0].value;
+
+            // Perform validation
+            if (firstName.trim() === "") {
+                displayError("Nom du formateur is required.");
+                return false;
+            }
+
+            if (lastName.trim() === "") {
+                displayError("Prénom du formateur is required.");
+                return false;
+            }
+
+            event.target.submit(); // Submit the form if validation passes
+        }
+    </script>
 </head>
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
-  <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${former}" action="/formers/post">
+
+  <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${former}" action="/formers/post" onsubmit="validateForm(event)">
       <div class="container mt-4">
           <div class="row">
               <div class="col-md-12 text-center">
@@ -17,11 +48,57 @@
       </div>
       <br>
     <input hidden th:field="${former.id}" name="id">
-      <input placeholder="Nom du formateur" name="firstName" th:field="${former.firstName}">
-      <input placeholder="Prénom du formateur" name="lastName" th:field="${former.lastName}">
+        <div class="form-group">
+          <label for="firstName">Nom du formateur</label>
+          <input class="form-control" id="firstName" placeholder="Nom du formateur" name="firstName" th:field="${former.firstName}" required>
+          <div class="error"></div>
+        </div>
+    
+    
+        <div class="form-group">
+          <label for="lastName">Prénom du formateur</label>
+          <input class="form-control" id="lastName" placeholder="Prénom du formateur" name="lastName" th:field="${former.lastName}" required>
+          <div class="error"></div>
+        </div>
+    
+    
       <br>
     <button class="btn btn-primary mb-4" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
   </form>
 <div th:replace="_fragments/footer"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.querySelector('form');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var firstNameInput = document.getElementById('firstName');
+            var lastNameInput = document.getElementById('lastName');
+            var firstNameErrorContainer = document.querySelector('#firstName + .error');
+            var lastNameErrorContainer = document.querySelector('#lastName + .error');
+
+            if (firstNameInput.value.trim() === '') {
+                firstNameErrorContainer.textContent = 'Nom du formateur is required.';
+                firstNameInput.classList.add('is-invalid');
+            } else {
+                firstNameErrorContainer.textContent = '';
+                firstNameInput.classList.remove('is-invalid');
+            }
+
+            if (lastNameInput.value.trim() === '') {
+                lastNameErrorContainer.textContent = 'Prénom du formateur is required.';
+                lastNameInput.classList.add('is-invalid');
+            } else {
+                lastNameErrorContainer.textContent = '';
+                lastNameInput.classList.remove('is-invalid');
+            }
+
+            if (!form.querySelectorAll('.is-invalid').length) {
+                form.submit();
+            }
+        });
+    });
+</script>
 </body>
 </html>

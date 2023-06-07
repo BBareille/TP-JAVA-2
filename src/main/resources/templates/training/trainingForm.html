@@ -1,15 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Formulaire formation</title>
-    <div th:replace="_fragments/header :: bootstrap"></div>
+  <meta charset="UTF-8">
+  <title>Formulaire formation</title>
+  <div th:replace="_fragments/header :: bootstrap"></div>
+  <script>
+    function displayError(errorMessage) {
+      alert(errorMessage);
+    }
+
+    function validateForm(event) {
+      event.preventDefault(); // Prevents the form from submitting and redirecting
+
+      var name = document.getElementsByName("name")[0].value;
+      var duration = document.getElementsByName("duration")[0].value;
+      var price = document.getElementsByName("price")[0].value;
+      var startAt = document.getElementsByName("startAt")[0].value;
+      var category = document.getElementsByName("category")[0].value;
+      var level = document.getElementsByName("level")[0].value;
+
+      // Perform validation
+      if (name === "") {
+        displayError("Name is required.");
+        return false;
+      }
+
+      if (duration === "") {
+        displayError("Duration is required.");
+        return false;
+      }
+
+      if (isNaN(parseFloat(duration))) {
+        displayError("Duration must be a valid number.");
+        return false;
+      }
+
+      if (price === "") {
+        displayError("Price is required.");
+        return false;
+      }
+
+      if (isNaN(parseFloat(price))) {
+        displayError("Price must be a valid number.");
+        return false;
+      }
+
+      if (startAt === "") {
+        displayError("Start date is required.");
+        return false;
+      }
+
+      if (category === "") {
+        displayError("Category is required.");
+        return false;
+      }
+
+      if (level === "") {
+        displayError("Level is required.");
+        return false;
+      }
+
+      event.target.submit(); // Submit the form if validation passes
+    }
+  </script>
 </head>
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
 
+
   <div class="d-flex justify-content-center">
-    <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${training}" action="/training/post">
+    <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${training}" action="/training/post" onsubmit="validateForm(event)">
       <div class="container mt-4">
         <div class="row">
           <div class="col-md-12 text-center">
@@ -23,39 +83,39 @@
       <input hidden th:field="${training.id}" name="id">
       <div class="mb-3">
         <label class="form-label">Nom de la formation</label>
-        <input class="form-control" placeholder="Nom de la formation" name="name" th:field="${training.name}">
+        <input class="form-control" placeholder="Nom de la formation" name="name" th:field="${training.name}" required>
       </div>
       <div class="mb-3">
-        <input class="form-check-input" th:field="${training.online}" id="online" type="checkbox" name="online">
+        <input class="form-check-input" th:field="${training.online}" id="online" type="checkbox" name="online" required>
         <label class="form-check-label" for="online">Se passe en ligne</label>
       </div>
       <div class="form-group mb-3">
         <label class="form-check-label">Durée de la formation: </label>
-        <input class="form-control" th:field="${training.duration}" placeholder="Durée" type="number" name="duration"/>
+        <input class="form-control" placeholder="Durée" type="text" name="duration" required/>
       </div>
       <div class="form-group mb-3">
         <label class="form-check-label">Prix de la formation: </label>
-        <input class="form-control" th:field="${training.price}" placeholder="Prix" type="number" name="price"/>
+        <input class="form-control" placeholder="Prix" type="text" name="price" required/>
       </div>
       <div class="mb-3">
         <label class="form-check-label">Date de début de la formation: </label>
-        <input class="form-control" th:field="${training.startAt}" placeholder="Date de début" type="date" name="date"/>
+        <input class="form-control" placeholder="Date de début" type="text" name="startAt" required/>
       </div>
       <div class="form-group mb-3">
-      <label class="form-check-label">Catégorie de la formation: </label>
-      <select class="form-select" th:field="${training.category}" name="category">
-        <th:block th:each="category : ${categoryList}">
-          <option th:value="${category.getId()}" th:text="${category.getName()}"></option>
-        </th:block>
-      </select>
+        <label class="form-check-label">Catégorie de la formation: </label>
+        <select class="form-select" th:field="${training.category}" name="category" required>
+          <th:block th:each="category : ${categoryList}">
+            <option th:value="${category.getId()}" th:text="${category.getName()}"></option>
+          </th:block>
+        </select>
       </div>
       <div class="form-group mb-3">
         <label class="form-check-label">Niveau de la formation: </label>
-      <select class="form-select" th:field="${training.level}" name="level">
-        <th:block th:each="level : ${levelList}">
-          <option th:value="${level.getId()}" th:text="${level.getName()}"></option>
-        </th:block>
-      </select>
+        <select class="form-select" th:field="${training.level}" name="level" required>
+          <th:block th:each="level : ${levelList}">
+            <option th:value="${level.getId()}" th:text="${level.getName()}"></option>
+          </th:block>
+        </select>
       </div>
       <div class="d-flex justify-content-center">
         <button class="btn btn-primary mb-4" type="submit">Valider  <i class="fa-solid fa-check"></i></button>

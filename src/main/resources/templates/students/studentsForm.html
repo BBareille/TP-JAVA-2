@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Formulaire étudiant</title>
@@ -7,7 +7,8 @@
 </head>
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
-  <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${student}" action="/students/post">
+
+  <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${student}" action="/students/post" onsubmit="validateForm(event)">
       <div class="container mt-4">
           <div class="row">
               <div class="col-md-12 text-center">
@@ -17,15 +18,40 @@
       </div>
       <br>
     <input hidden th:field="${student.id}" name="id">
-    <input placeholder="Nom de l'étudiant" name="firstName" th:field="${student.firstName}">
-    <input placeholder="Prénom de l'étudiant" name="lastName" th:field="${student.lastName}">
+    <div class="col-md-4">
+        <label for="validationServer01" class="form-label">First name</label>
+        <input type="text" class="form-control is-valid" id="validationServer01" name="firstName" th:field="${student.firstName}"   required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label for="validationServer02" class="form-label">Last name</label>
+        <input type="text" class="form-control is-valid" id="validationServer02" name="lastName" th:field="${student.lastName}"   required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
       <br>
     <button class="btn btn-primary mb-3" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
   </form>
+
 <div th:replace="_fragments/footer"></div>
+
+<script>
+    function validateForm(event) {
+        event.preventDefault(); // Prevents the form from submitting and redirecting
+
+        var firstName = document.getElementsByName("firstName")[0].value;
+        var lastName = document.getElementsByName("lastName")[0].value;
+
+        if (!/^[A-Za-z]+$/.test(firstName) || !/^[A-Za-z]+$/.test(lastName)) {
+            alert("Only alphabetic characters are allowed.");
+        } else {
+            event.target.submit(); // Submit the form if validation passes
+        }
+    }
+</script>
 </body>
 </html>
 
-<script>
-
-</script>

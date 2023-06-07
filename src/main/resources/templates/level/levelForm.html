@@ -4,10 +4,35 @@
     <meta charset="UTF-8">
     <title>Formulaire niveau</title>
     <div th:replace="_fragments/header :: bootstrap"></div>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <script>
+        function displayError(errorMessage) {
+            alert(errorMessage);
+        }
+
+        function validateForm(event) {
+            event.preventDefault(); // Prevents the form from submitting and redirecting
+
+            var name = document.getElementsByName("name")[0].value;
+
+            // Perform validation
+            if (name.trim() === "") {
+                displayError("Difficulté is required.");
+                return false;
+            }
+
+            event.target.submit(); // Submit the form if validation passes
+        }
+    </script>
 </head>
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
-  <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${level}" action="/level/post">
+
+  <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${level}" action="/level/post" onsubmit="validateForm(event)">
       <div class="container mt-4">
           <div class="row">
               <div class="col-md-12 text-center">
@@ -17,10 +42,35 @@
       </div>
       <br>
     <input hidden th:field="${level.id}" name="id">
-    <input placeholder="Difficulté" name="name" th:field="${level.name}">
+        <div class="form-group">
+          <label for="name">Difficulté</label>
+          <input class="form-control" id="name" placeholder="Difficulté" name="name" th:field="${level.name}" required>
+          <div class="error"></div>
+        </div>
       <br>
       <button class="btn btn-primary mb-4" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
   </form>
+
 <div th:replace="_fragments/footer"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.querySelector('form');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var nameInput = document.getElementById('name');
+            var errorContainer = document.querySelector('.error');
+
+            if (nameInput.value.trim() === '') {
+                errorContainer.textContent = 'Difficulté is required.';
+                nameInput.classList.add('is-invalid');
+                return;
+            }
+
+            form.submit();
+        });
+    });
+</script>
 </body>
 </html>
