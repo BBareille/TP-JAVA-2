@@ -32,7 +32,7 @@
       <button class="btn btn-danger">Supprimer</button>
   </div>
 
-<!--    <a th:href="'/training/trainingDetails' + ${training.getId()} class="btn btn-primary">Ajouter étudiant</a>-->
+    <a th:href="'/training/trainingDetails' + ${training.getId()}" class="btn btn-primary">Ajouter étudiant</a>
     <div>Etudiants inscrits : </div>
 
   <div class="ms-3 d-flex justify-content-between w-25"  th:each="student : ${training.getStudentsList()}">
