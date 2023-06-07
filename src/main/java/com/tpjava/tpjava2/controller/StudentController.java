@@ -22,8 +22,6 @@ public class StudentController {
     @Autowired
     StudentsRepository studentsRepository;
 
-    TrainingRepository trainingRepository;
-
     @GetMapping("/")
     public String index(Model model){
         List<Students> studentsList = studentsRepository.findAll();

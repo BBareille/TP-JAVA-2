@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Training list</title>
+    <title>Teached Trainings</title>
     <div th:replace="_fragments/header :: bootstrap"></div>
 </head>
 <body>
 <div class="container">
-    <h2>Subscribed Trainings</h2>
+    <h2>Teached Trainings</h2>
     <div class="row">
         <div class="col-md-6">
-            <h4>Selected Student: <span th:text="${student.getFullName()}"></span></h4>
+            <h4>Selected Former: <span th:text="${former.getFirstName()  + ''  + former.getLastName()}"></span></h4>
         </div>
     </div>
     <div class="row">
@@ -27,7 +26,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="training : ${subscribedTrainings}">
+                        <tr th:each="training : ${teachedTrainings}">
                             <td th:text="${training.getName()}"></td>
                             <td th:text="${training.getCategory().getName()}"></td>
                             <td th:text="${training.getLevel().getName()}"></td>
@@ -40,7 +39,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <a href="/students/" class="btn btn-secondary">Back to Students List</a>
+            <a href="/formers/" class="btn btn-secondary">Back to Formers List</a>
         </div>
     </div>
 </div>
