@@ -19,7 +19,7 @@ public class Students {
     String firstName;
     String lastName;
 
-    @ManyToMany(mappedBy = "studentsList", cascade = { CascadeType.ALL })
+    @ManyToMany(mappedBy = "studentsList", cascade = { CascadeType.DETACH })
     private List<Training> trainingList = new ArrayList<>();
 
     public String getFullName(){
@@ -27,7 +27,7 @@ public class Students {
     }
 
     public boolean isValid(){
-        return !(this.firstName == null || this.lastName == null);
+        return !(this.firstName == null|| this.firstName.isEmpty() || this.lastName == null || this.lastName.isEmpty());
     }
 
 }

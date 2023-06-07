@@ -19,10 +19,10 @@ public class Former {
     private String firstName;
     private String lastName;
 
-    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Training.class)
+    @ManyToMany(cascade = CascadeType.DETACH, targetEntity = Training.class)
     private List<Training> trainingList = new ArrayList<>();
 
     public boolean isValid(){
-        return !(this.firstName == null || this.lastName == null);
+        return !(this.firstName == null || this.firstName.isEmpty() || this.lastName == null || this.lastName.isEmpty());
     }
 }

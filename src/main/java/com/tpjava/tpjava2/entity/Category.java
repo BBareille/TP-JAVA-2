@@ -19,6 +19,6 @@ public class Category {
     private String name;
 
     public boolean isValid(){
-        return !( this.name == null );
+        return !( this.name == null || this.name.isEmpty() );
     }
 }
