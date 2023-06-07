@@ -7,12 +7,20 @@
 </head>
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
-  <form method="post" th:object="${former}" action="/formers/post">
-    <h1>Ajout d'un formateur</h1>
+  <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${former}" action="/formers/post">
+      <div class="container mt-4">
+          <div class="row">
+              <div class="col-md-12 text-center">
+                  <h3 class="animate-charcter">Ajout d'un formateur</h3>
+              </div>
+          </div>
+      </div>
+      <br>
     <input hidden th:field="${former.id}" name="id">
       <input placeholder="Nom du formateur" name="firstName" th:field="${former.firstName}">
       <input placeholder="Prénom du formateur" name="lastName" th:field="${former.lastName}">
-    <button class="btn btn-primary" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
+      <br>
+    <button class="btn btn-primary mb-4" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
   </form>
 <div th:replace="_fragments/footer"></div>
 </body>

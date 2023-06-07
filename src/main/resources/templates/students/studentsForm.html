@@ -7,13 +7,25 @@
 </head>
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
-  <form method="post" th:object="${student}" action="/students/post">
-    <h1>Ajout d'un étudiant</h1>
+  <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${student}" action="/students/post">
+      <div class="container mt-4">
+          <div class="row">
+              <div class="col-md-12 text-center">
+                  <h3 class="animate-charcter">Ajout d'un étudiant</h3>
+              </div>
+          </div>
+      </div>
+      <br>
     <input hidden th:field="${student.id}" name="id">
     <input placeholder="Nom de l'étudiant" name="firstName" th:field="${student.firstName}">
     <input placeholder="Prénom de l'étudiant" name="lastName" th:field="${student.lastName}">
-    <button class="btn btn-primary" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
+      <br>
+    <button class="btn btn-primary mb-3" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
   </form>
 <div th:replace="_fragments/footer"></div>
 </body>
 </html>
+
+<script>
+
+</script>

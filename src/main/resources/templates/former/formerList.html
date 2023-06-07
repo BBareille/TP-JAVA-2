@@ -10,7 +10,6 @@
 <div class="container-sm" th:if="${success} != null">
     <div class="alert alert-success" role="alert" th:text="${success}"></div>
 </div>
-<h1>Formateurs</h1>
 <div class="container mt-5">
     <a href="/formers/add" class="btn btn-primary">Ajouter un nouveau formateur  <i class="fa-solid fa-plus"></i></a>
 
@@ -20,6 +19,13 @@
         <th>Prénom du Formateur</th>
         </thead>
         <tbody>
+        <div class="container mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h3 class="animate-charcter">Liste des formateurs</h3>
+                </div>
+            </div>
+        </div>
         <th:block th:each="former : ${formerList} ">
             <tr>
                 <td th:text="${former.getLastName()}"></td>
