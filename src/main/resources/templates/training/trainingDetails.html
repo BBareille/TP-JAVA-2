@@ -27,16 +27,17 @@
 
     <a th:href="'/training/' + ${training.getId()} + '/formers'" class="btn btn-primary">Ajouter formateur</a>
     <div>Formateurs durant la formation: </div>
+
     <div class="ms-3 d-flex justify-content-between w-25" th:each="former : ${training.getFormerList()}">
-    <div th:text="${former.getFirstName()+ ' ' + former.getLastName()}"></div>
-      <button class="btn btn-danger">Supprimer</button>
-  </div>
+      <div th:text="${former.getFullName()}"></div>
+        <button class="btn btn-danger">Supprimer</button>
+    </div>
 
     <a th:href="'/training/' + ${training.getId()} + '/students'" class="btn btn-primary">Ajouter étudiant</a>
     <div>Etudiants inscrits : </div>
 
-  <div class="ms-3 d-flex justify-content-between w-25"  th:each="student : ${training.getStudentsList()}">
-    <div th:text="${student.getFirstName()+ ' ' + student.getLastName()}"></div>
+  <div class="ms-3 d-flex justify-content-between w-25" th:each="student : ${training.getStudentsList()}">
+    <div th:text="${student.getFullName()}"></div>
       <button class="btn btn-danger">Supprimer</button>
   </div>
 

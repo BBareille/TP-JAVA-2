@@ -2,10 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title th:text="${training.getName()} + ' edit Former'"></title>
 </head>
 <body>
+<h1>Modifier liste des formateurs dans </h1>
 
+<form method="post" action="" th:object="${training}" >
+
+    <input th:field="${training.id}" hidden>
+    <input th:field="${training.name}" hidden>
+    <input th:field="${training.duration}" hidden>
+    <input th:field="${training.online}" hidden>
+    <input th:field="${training.price}" hidden>
+    <input th:field="${training.startAt}" hidden>
+    <input th:field="${training.category}" hidden>
+    <input th:field="${training.level}" hidden>
+
+    <input th:field="${training.formerList}" type="checkbox" th:each="formerInTraining: ${training.getFormerList()}" th:value="${formerInTraining.getId()}" th:text="${formerInTraining.getFullName()}" checked/>
+    <input th:field="${training.formerList}" type="checkbox" th:each="former : ${formers}" th:value="${former.getId()}" th:text="${former.getFullName()}"/>
+
+    <button class="btn btn-primary">Ajouter</button>
+</form>
 
 </body>
 </html>
