@@ -36,6 +36,10 @@
           <a th:href="'/students/modify/' + ${student.getId()}" class="btn btn-secondary">Modifier  <i class="fa-solid fa-pen-to-square"></i></a>
 
         </td>
+        <td>
+          <a th:href="'/students/subscribedTrainings/' + ${student.getId()}" class="btn btn-primary">View subscribed trainings</a>
+        </td>
+
       </tr>
     </th:block>
     </tbody>
