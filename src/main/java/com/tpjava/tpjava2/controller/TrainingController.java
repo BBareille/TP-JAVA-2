@@ -100,7 +100,7 @@ public class TrainingController {
     public String details(@PathVariable String id, Model model)
     {
         Optional<Training> trainingOptional = trainingRepository.findById(Long.valueOf(id));
-        if(!trainingOptional.isPresent()) return "redirect:/";
+        if(trainingOptional.isEmpty()) return "redirect:/";
 
         model.addAttribute("training", trainingOptional.get());
 

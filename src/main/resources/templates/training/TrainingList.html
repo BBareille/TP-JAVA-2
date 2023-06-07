@@ -46,6 +46,7 @@
                                 <button th:data-id="${training.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer  <i class="fa-regular fa-trash-can"></i></button>
                             </form>
                             <a th:href="'/training/modify/' + ${training.getId()}" class="btn btn-secondary">Modifier  <i class="fa-solid fa-pen-to-square"></i></a>
+                            <a th:href="'/training/' + ${training.getId()}" class="btn btn-info">Infos  <i class="fa-solid fa-circle-info"></i></a>
                         </td>
                     </tr>
                 </th:block>
