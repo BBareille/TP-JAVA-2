@@ -49,6 +49,10 @@ public class Training {
     )
     private List<Former> formerList = new ArrayList<>();
 
+    public boolean isValid(){
+        return !(this.category == null || this.level == null || this.name == null || this.price == null || this.startAt == null);
+    }
+
 
     @Override
     public String toString() {

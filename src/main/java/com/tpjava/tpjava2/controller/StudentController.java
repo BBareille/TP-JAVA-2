@@ -49,6 +49,7 @@ public class StudentController {
     @PostMapping("/post")
     public String postForm(@ModelAttribute Students student, Model model, RedirectAttributes redirectAttributes)
     {
+        if(!student.isValid()) return "redirect:/students/add";
         if(student.getId() != null){
             redirectAttributes.addFlashAttribute("success", "Étudiant modifié");
         } else {

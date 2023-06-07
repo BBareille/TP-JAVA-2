@@ -21,4 +21,8 @@ public class Former {
 
     @ManyToMany(cascade = CascadeType.ALL, targetEntity = Training.class)
     private List<Training> trainingList = new ArrayList<>();
+
+    public boolean isValid(){
+        return !(this.firstName == null || this.lastName == null);
+    }
 }

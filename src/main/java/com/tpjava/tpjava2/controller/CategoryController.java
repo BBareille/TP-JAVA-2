@@ -47,6 +47,7 @@ public class CategoryController {
     @PostMapping("/post")
     public String postForm(@ModelAttribute Category category, Model model, RedirectAttributes redirectAttributes)
     {
+        if(!category.isValid()) return "redirect:/category/add";
         if(category.getId() != null){
             redirectAttributes.addFlashAttribute("success", "Catégorie modifié");
         } else {

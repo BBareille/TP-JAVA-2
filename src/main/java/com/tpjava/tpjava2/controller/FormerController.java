@@ -48,6 +48,7 @@ public class FormerController {
     @PostMapping("/post")
     public String postForm(@ModelAttribute Former former, Model model, RedirectAttributes redirectAttributes)
     {
+        if(!former.isValid()) return "redirect:/former/add";
         if(former.getId() != null){
             redirectAttributes.addFlashAttribute("success", "Formateur modifié");
         } else {

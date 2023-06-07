@@ -30,6 +30,7 @@ public class LevelController {
     @GetMapping("/add")
     public String getForm(Model model)
     {
+
         Level level = new Level();
         model.addAttribute("level", level);
 
@@ -48,6 +49,7 @@ public class LevelController {
     @PostMapping("/post")
     public String postForm(@ModelAttribute Level level, Model model, RedirectAttributes redirectAttributes)
     {
+        if(!level.isValid()) return "redirect:/level/add";
         if(level.getId() != null){
             redirectAttributes.addFlashAttribute("success", "Niveau modifié");
         } else {

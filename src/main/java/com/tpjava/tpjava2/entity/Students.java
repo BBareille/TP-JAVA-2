@@ -26,4 +26,8 @@ public class Students {
         return this.firstName + " " + this.lastName;
     }
 
+    public boolean isValid(){
+        return !(this.firstName == null || this.lastName == null);
+    }
+
 }

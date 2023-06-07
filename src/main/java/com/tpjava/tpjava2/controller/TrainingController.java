@@ -68,6 +68,7 @@ public class TrainingController {
     @PostMapping("/post")
     public String postForm(@ModelAttribute Training training, Model model, RedirectAttributes redirectAttributes)
     {
+        if(!training.isValid()) return "redirect:/training/add";
         if(training.getId() != null){
             redirectAttributes.addFlashAttribute("success", "Formation modifié");
         } else {
