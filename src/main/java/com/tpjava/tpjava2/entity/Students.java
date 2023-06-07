@@ -39,4 +39,12 @@ public class Students {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Students{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

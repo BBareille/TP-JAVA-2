@@ -10,7 +10,7 @@
 
   <form>
     <select>
-      <option th:each="student : ${training.getStudentsList()}" th:text="${student.getFullName()}"></option>
+      <option th:each="student : ${students}" th:text="${student.getFullName()}"></option>
     </select>
   </form>
 

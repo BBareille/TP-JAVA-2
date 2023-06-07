@@ -115,12 +115,9 @@ public class TrainingController {
         if(trainingOptional.isEmpty()) return "redirect:/";
 
         List<Students> studentsListInTraining = trainingOptional.get().getStudentsList();
-
         List<Students> filteredStudents = studentsRepository.findAll();
+
         filteredStudents.removeIf(studentsListInTraining::contains);
-
-        System.out.println(filteredStudents);
-
 
         model.addAttribute("training", trainingOptional.get());
         model.addAttribute("students", filteredStudents);
