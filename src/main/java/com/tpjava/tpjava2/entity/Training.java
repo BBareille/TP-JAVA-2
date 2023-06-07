@@ -71,11 +71,11 @@ public class Training {
                 '}';
     }
 
-    public String getStartAt(){
-        if(startAt == null) return "";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.FRANCE);
-        LocalDate date = LocalDate.parse(startAt, formatter);
-        DateTimeFormatter sformatter = DateTimeFormatter.ofPattern("EEE d MMM yyyy", Locale.FRANCE);
-        return sformatter.format(date);
-    }
+//    public String getStartAt(){
+//        if(startAt == null) return "";
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.FRANCE);
+//        LocalDate date = LocalDate.parse(startAt, formatter);
+//        DateTimeFormatter sformatter = DateTimeFormatter.ofPattern("EEE d MMM yyyy", Locale.FRANCE);
+//        return sformatter.format(date);
+//    }
 }

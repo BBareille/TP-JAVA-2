@@ -35,4 +35,8 @@ public class Former {
         }
     }
 
+    public String getFullName(){
+        return this.firstName + " " + this.lastName;
+    }
+
 }

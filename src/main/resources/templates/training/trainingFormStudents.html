@@ -7,11 +7,21 @@
 <body>
 <h1>Modifier liste des étudiants dans </h1>
 
+  <form method="post" action="" th:object="${training}" >
 
-  <form>
-    <select>
-      <option th:each="student : ${students}" th:text="${student.getFullName()}"></option>
-    </select>
+      <input th:field="${training.id}" hidden>
+      <input th:field="${training.name}" hidden>
+      <input th:field="${training.duration}" hidden>
+      <input th:field="${training.online}" hidden>
+      <input th:field="${training.price}" hidden>
+      <input th:field="${training.startAt}" hidden>
+      <input th:field="${training.category}" hidden>
+      <input th:field="${training.level}" hidden>
+
+      <input th:field="${training.studentsList}" type="checkbox" th:each="studentInTraining: ${training.getStudentsList()}" th:value="${studentInTraining.getId()}" th:text="${studentInTraining.getFullName()}" checked/>
+      <input th:field="${training.studentsList}" type="checkbox" th:each="student : ${students}" th:value="${student.getId()}" th:text="${student.getFullName()}"/>
+
+      <button class="btn btn-primary">Ajouter</button>
   </form>
 
 </body>
