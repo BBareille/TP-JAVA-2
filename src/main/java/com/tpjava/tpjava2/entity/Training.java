@@ -5,8 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Entity
 @Getter @Setter
@@ -53,9 +57,6 @@ public class Training {
         return !(this.category == null || this.level == null || this.name == null || this.name.isEmpty() || this.price == null || this.startAt == null || this.startAt.isEmpty());
     }
 
-
-
-
     @Override
     public String toString() {
         return "Training{" +
@@ -68,5 +69,13 @@ public class Training {
                 ", level=" + level +
                 ", online=" + online +
                 '}';
+    }
+
+    public String getStartAt(){
+        if(startAt == null) return "";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.FRANCE);
+        LocalDate date = LocalDate.parse(startAt, formatter);
+        DateTimeFormatter sformatter = DateTimeFormatter.ofPattern("EEE d MMM yyyy", Locale.FRANCE);
+        return sformatter.format(date);
     }
 }
