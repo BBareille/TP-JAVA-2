@@ -106,17 +106,6 @@ public class TrainingController {
         return "training/trainingDetails";
     }
 
-    @GetMapping("/test")
-    public String tryToDelete()
-    {
-        Optional<Training> trainingOptional = trainingRepository.findById(1L);
-        List<Students> studentsList = trainingOptional.get().getStudentsList();
-        System.out.println(studentsList.remove(0));
-        Training training = trainingOptional.get();
-        training.setStudentsList(studentsList);
-        trainingRepository.save(training);
-        return "training/trainingList";
-    }
 
 
 }

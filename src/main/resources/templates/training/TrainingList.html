@@ -75,7 +75,7 @@
 
         $("#delete-button").on("click", () => {
             $.ajax({
-                url: "/" + id,
+                url: "/training/" + id,
                 type: "POST",
                 success: () => {
                     $('#myModal').modal('hide')

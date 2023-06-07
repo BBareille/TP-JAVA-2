@@ -19,10 +19,20 @@ public class Former {
     private String firstName;
     private String lastName;
 
-    @ManyToMany(cascade = CascadeType.DETACH, targetEntity = Training.class)
+    @ManyToMany(mappedBy = "formerList")
     private List<Training> trainingList = new ArrayList<>();
 
     public boolean isValid(){
         return !(this.firstName == null || this.firstName.isEmpty() || this.lastName == null || this.lastName.isEmpty());
     }
+
+    @PreRemove
+    private void removeFormersTrainingAssociations()
+    {
+        for (Training training: this.trainingList)
+        {
+            training.getFormerList().remove(this);
+        }
+    }
+
 }

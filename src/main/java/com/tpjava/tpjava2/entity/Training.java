@@ -54,6 +54,8 @@ public class Training {
     }
 
 
+
+
     @Override
     public String toString() {
         return "Training{" +

@@ -19,7 +19,7 @@ public class Students {
     String firstName;
     String lastName;
 
-    @ManyToMany(mappedBy = "studentsList", cascade = { CascadeType.DETACH })
+    @ManyToMany(mappedBy = "studentsList")
     private List<Training> trainingList = new ArrayList<>();
 
     public String getFullName(){
@@ -28,6 +28,15 @@ public class Students {
 
     public boolean isValid(){
         return !(this.firstName == null|| this.firstName.isEmpty() || this.lastName == null || this.lastName.isEmpty());
+    }
+
+    @PreRemove
+    private void removeStudentsTrainingAssociations()
+    {
+        for (Training training: this.trainingList)
+        {
+            training.getStudentsList().remove(this);
+        }
     }
 
 }
