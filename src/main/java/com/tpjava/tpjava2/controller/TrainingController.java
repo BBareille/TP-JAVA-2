@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Controller()
+@Controller
 @RequestMapping("/training")
 public class TrainingController {
 
