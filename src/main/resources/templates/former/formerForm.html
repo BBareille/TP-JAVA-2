@@ -37,22 +37,34 @@
 </head>
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
-<form method="post" th:object="${former}" action="/formers/post" onsubmit="validateForm(event)">
-    <h1>Ajout d'un formateur</h1>
-    <input hidden th:field="${former.id}" name="id">
-    <div class="form-group">
-        <label for="firstName">Nom du formateur</label>
-        <input class="form-control" id="firstName" placeholder="Nom du formateur" name="firstName" th:field="${former.firstName}" required>
-        <div class="error"></div>
-    </div>
-    <div class="form-group">
-        <label for="lastName">Prénom du formateur</label>
-        <input class="form-control" id="lastName" placeholder="Prénom du formateur" name="lastName" th:field="${former.lastName}" required>
-        <div class="error"></div>
-    </div>
 
-    <button class="btn btn-primary" type="submit">Valider <i class="fa-solid fa-check"></i></button>
-</form>
+  <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${former}" action="/formers/post" onsubmit="validateForm(event)">
+      <div class="container mt-4">
+          <div class="row">
+              <div class="col-md-12 text-center">
+                  <h3 class="animate-charcter">Ajout d'un formateur</h3>
+              </div>
+          </div>
+      </div>
+      <br>
+    <input hidden th:field="${former.id}" name="id">
+        <div class="form-group">
+          <label for="firstName">Nom du formateur</label>
+          <input class="form-control" id="firstName" placeholder="Nom du formateur" name="firstName" th:field="${former.firstName}" required>
+          <div class="error"></div>
+        </div>
+    
+    
+        <div class="form-group">
+          <label for="lastName">Prénom du formateur</label>
+          <input class="form-control" id="lastName" placeholder="Prénom du formateur" name="lastName" th:field="${former.lastName}" required>
+          <div class="error"></div>
+        </div>
+    
+    
+      <br>
+    <button class="btn btn-primary mb-4" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
+  </form>
 <div th:replace="_fragments/footer"></div>
 
 <script>

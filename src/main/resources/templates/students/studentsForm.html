@@ -8,8 +8,15 @@
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
 
-<form class="row g-3" method="post" th:object="${student}" action="/students/post" onsubmit="validateForm(event)">
-    <h1>Ajout d'un étudiant</h1>
+  <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${student}" action="/students/post" onsubmit="validateForm(event)">
+      <div class="container mt-4">
+          <div class="row">
+              <div class="col-md-12 text-center">
+                  <h3 class="animate-charcter">Ajout d'un étudiant</h3>
+              </div>
+          </div>
+      </div>
+      <br>
     <input hidden th:field="${student.id}" name="id">
     <div class="col-md-4">
         <label for="validationServer01" class="form-label">First name</label>
@@ -25,10 +32,10 @@
             Looks good!
         </div>
     </div>
-    <div class="col-12">
-        <button class="btn btn-primary" type="submit">Submit form</button>
-    </div>
-</form>
+      <br>
+    <button class="btn btn-primary mb-3" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
+  </form>
+
 <div th:replace="_fragments/footer"></div>
 
 <script>
@@ -47,6 +54,4 @@
 </script>
 </body>
 </html>
-
-
 

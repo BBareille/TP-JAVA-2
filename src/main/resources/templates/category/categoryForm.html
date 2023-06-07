@@ -13,18 +13,24 @@
 </head>
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
-<div class="container">
-    <form class="needs-validation" method="post" th:object="${category}" action="/category/post" onsubmit="event.preventDefault()">
-        <h1>Ajout d'une catégorie</h1>
-        <input hidden th:field="${category.id}" name="id">
+  <form class="needs-validation d-flex flex-column align-items-center justify-content-center" method="post" th:object="${category}" action="/category/post" onsubmit="event.preventDefault()">
+      <div class="container mt-4">
+          <div class="row">
+              <div class="col-md-12 text-center">
+                  <h3 class="animate-charcter">Ajout d'une catégorie</h3>
+              </div>
+          </div>
+      </div>
+      <br>
+    <input hidden th:field="${category.id}" name="id">
         <div class="mb-3">
             <label class="form-label">Nom de la catégorie</label>
             <input class="form-control form-input" placeholder="Nom de la catégorie" name="name" th:field="${category.name}" required>
             <div class="invalid-feedback">Veuillez saisir un nom de catégorie valide.</div>
         </div>
-        <button class="btn btn-primary" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
-    </form>
-</div>
+      <br>
+    <button class="btn btn-primary mb-4" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
+  </form>
 <div th:replace="_fragments/footer"></div>
 </body>
 </html>

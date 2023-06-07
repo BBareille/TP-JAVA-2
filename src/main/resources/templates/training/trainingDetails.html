@@ -6,18 +6,41 @@
     <div th:replace="_fragments/header :: bootstrap"></div>
 </head>
 <body>
-  <div th:text="${training.getName()}"></div>
-  <div th:text="${training.getLevel().getName()}"></div>
-  <div th:text="${training.getCategory().getName()}"></div>
-  <div th:text="${training.getPrice()}"></div>
-  <div th:text="${training.getDuration()}"></div>
-  <div th:text="${training.getStartAt()}"></div>
-  <div th:each="former : ${training.getFormerList()}">
+<div th:replace="_fragments/navbar :: navbar"></div>
+
+<div class="container">
+    <div>Nom de la formation</div>
+  <span th:text="${training.getName()}"></span>
+    <div>Niveau de la formation</div>
+  <span th:text="${training.getLevel().getName()}"></span>
+    <div>Catégorie de la formation</div>
+
+  <span th:text="${training.getCategory().getName()}"></span>
+    <div>Prix de la formation</div>
+
+  <span th:text="${training.getPrice()}"></span>
+    <div>Durée de la formation</div>
+
+  <span th:text="${training.getDuration()}"></span>
+    <div>Début de la formation : <span th:text="${training.getStartAt()}"></span></div>
+
+
+    <a th:href="'/training/' + ${training.getId()} + '/formers'" class="btn btn-primary">Ajouter formateur</a>
+    <div>Formateurs durant la formation: </div>
+    <div class="ms-3 d-flex justify-content-between w-25" th:each="former : ${training.getFormerList()}">
     <div th:text="${former.getFirstName()+ ' ' + former.getLastName()}"></div>
+      <button class="btn btn-danger">Supprimer</button>
   </div>
-  <div th:each="former : ${training.getStudentsList()}">
-    <div th:text="${former.getFirstName()+ ' ' + former.getLastName()}"></div>
+
+    <a th:href="'/training/' + ${training.getId()} + '/students'" class="btn btn-primary">Ajouter étudiant</a>
+    <div>Etudiants inscrits : </div>
+
+  <div class="ms-3 d-flex justify-content-between w-25"  th:each="student : ${training.getStudentsList()}">
+    <div th:text="${student.getFirstName()+ ' ' + student.getLastName()}"></div>
+      <button class="btn btn-danger">Supprimer</button>
   </div>
+
+</div>
 </body>
 
 <div th:replace="_fragments/footer"></div>

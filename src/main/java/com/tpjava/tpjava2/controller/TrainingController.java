@@ -4,9 +4,8 @@ import com.tpjava.tpjava2.entity.Category;
 import com.tpjava.tpjava2.entity.Level;
 import com.tpjava.tpjava2.entity.Students;
 import com.tpjava.tpjava2.entity.Training;
-import com.tpjava.tpjava2.repository.CategoryRepository;
-import com.tpjava.tpjava2.repository.LevelRepository;
-import com.tpjava.tpjava2.repository.TrainingRepository;
+import com.tpjava.tpjava2.repository.*;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,15 +18,17 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/training")
+@AllArgsConstructor
 public class TrainingController {
 
-    @Autowired
     TrainingRepository trainingRepository;
 
-    @Autowired
+    StudentsRepository studentsRepository;
+
+    FormerRepository formerRepository;
+
     LevelRepository levelRepository;
 
-    @Autowired
     CategoryRepository categoryRepository;
 
     @GetMapping("/")
@@ -104,6 +105,35 @@ public class TrainingController {
         model.addAttribute("training", trainingOptional.get());
 
         return "training/trainingDetails";
+    }
+
+
+    @GetMapping("/{id}/students")
+    public String trainingFormStudents(@PathVariable String id, Model model)
+    {
+        Optional<Training> trainingOptional = trainingRepository.findById(Long.valueOf(id));
+        if(trainingOptional.isEmpty()) return "redirect:/";
+
+        List<Students> studentsListInTraining = trainingOptional.get().getStudentsList();
+
+        List<Students> filteredStudents = studentsRepository.findAll();
+        filteredStudents.removeIf(studentsListInTraining::contains);
+
+        System.out.println(filteredStudents);
+
+
+        model.addAttribute("training", trainingOptional.get());
+        model.addAttribute("students", filteredStudents);
+        return "training/trainingFormStudents";
+    }
+
+    @GetMapping("/{id}/formers")
+    public String trainingFormFormer(@PathVariable String id, Model model)
+    {
+        Optional<Training> trainingOptional = trainingRepository.findById(Long.valueOf(id));
+        if(trainingOptional.isEmpty()) return "redirect:/";
+        model.addAttribute("training", trainingOptional.get());
+        return "training/trainingFormFormer";
     }
 
 

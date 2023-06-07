@@ -31,17 +31,26 @@
 </head>
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
-<form method="post" th:object="${level}" action="/level/post" onsubmit="validateForm(event)">
-    <h1>Ajout d'un niveau de difficulté</h1>
-    <input hidden th:field="${level.id}" name="id">
-    <div class="form-group">
-        <label for="name">Difficulté</label>
-        <input class="form-control" id="name" placeholder="Difficulté" name="name" th:field="${level.name}" required>
-        <div class="error"></div>
-    </div>
 
-    <button class="btn btn-primary" type="submit">Valider <i class="fa-solid fa-check"></i></button>
-</form>
+  <form class="d-flex flex-column align-items-center justify-content-center" method="post" th:object="${level}" action="/level/post" onsubmit="validateForm(event)">
+      <div class="container mt-4">
+          <div class="row">
+              <div class="col-md-12 text-center">
+                  <h3 class="animate-charcter">Ajout d'un niveau de difficulté</h3>
+              </div>
+          </div>
+      </div>
+      <br>
+    <input hidden th:field="${level.id}" name="id">
+        <div class="form-group">
+          <label for="name">Difficulté</label>
+          <input class="form-control" id="name" placeholder="Difficulté" name="name" th:field="${level.name}" required>
+          <div class="error"></div>
+        </div>
+      <br>
+      <button class="btn btn-primary mb-4" type="submit">Valider  <i class="fa-solid fa-check"></i></button>
+  </form>
+
 <div th:replace="_fragments/footer"></div>
 
 <script>
