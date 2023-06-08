@@ -2,6 +2,7 @@ package com.tpjava.tpjava2.controller;
 
 import com.tpjava.tpjava2.entity.Former;
 import com.tpjava.tpjava2.entity.Level;
+import com.tpjava.tpjava2.entity.Students;
 import com.tpjava.tpjava2.entity.Training;
 import com.tpjava.tpjava2.repository.FormerRepository;
 import com.tpjava.tpjava2.repository.LevelRepository;
@@ -44,6 +45,18 @@ public class FormerController {
         model.addAttribute("former", former);
 
         return "former/formerForm";
+    }
+
+    @GetMapping("/{id}")
+    public String details(@PathVariable String id, Model model)
+    {
+        Optional<Former> former = formerRepository.findById(Long.valueOf(id));
+        if(former.isEmpty())
+            return "redirect:";
+
+        model.addAttribute("former", former.get());
+
+        return "former/details";
     }
 
     @PostMapping("/post")
