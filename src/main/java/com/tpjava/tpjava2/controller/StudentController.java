@@ -38,6 +38,18 @@ public class StudentController {
         return "students/studentsForm";
     }
 
+    @GetMapping("/{id}")
+    public String details(@PathVariable String id, Model model)
+    {
+        Optional<Students> student = studentsRepository.findById(Long.valueOf(id));
+        if(student.isEmpty())
+            return "redirect:";
+
+        model.addAttribute("student", student.get());
+
+        return "students/details";
+    }
+
     @GetMapping("/modify/{id}")
     public String updateForm(@PathVariable String id, Model model)
     {
