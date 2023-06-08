@@ -57,11 +57,10 @@
       <h3 class="text-center text-warning">
         Étudiants inscrits
       </h3>
-      <th:block th:each="student : ${training.getStudentsList()}">
-        <ol>
-          <li class="list-item" th:text="${student.getFullName()}">
-          </li>
-        </ol>
+      <th:block th:each="student : ${training.getStudentsList()}" class="d-flex row mb-16">
+          <span class="list-item" th:text="${student.getFullName()}"></span>
+          <a th:href="'/students/' + ${student.getId()}" class="btn btn-secondary">Détails  <i class="fa-solid fa-pen-to-square"></i></a>
+          <br>
       </th:block>
     </div>
     <div class="col-md-4 text-center">
@@ -77,9 +76,6 @@
     </div>
   </div>
 </div>
-
-</body>
-
 <div th:replace="_fragments/footer"></div>
-
+</body>
 </html>

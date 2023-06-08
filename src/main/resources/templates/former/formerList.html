@@ -35,9 +35,7 @@
                         <button th:data-id="${former.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer  <i class="fa-regular fa-trash-can"></i></button>
                     </form>
                     <a th:href="'/formers/modify/' + ${former.getId()}" class="btn btn-secondary">Modifier  <i class="fa-solid fa-pen-to-square"></i></a>
-                <td>
                     <a th:href="'/formers/teachedTrainings/' + ${former.getId()}" class="btn btn-primary">Voir ses cours  <i class="fa-solid fa-eye"></i></a>
-                </td>
                 </td>
             </tr>
         </th:block>
