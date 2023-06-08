@@ -34,10 +34,7 @@
             <button th:data-id="${student.getId()}" onclick="deleteFunction(this.getAttribute('data-id'))"  type="button" class="btn btn-danger">Supprimer  <i class="fa-regular fa-trash-can"></i></button>
           </form>
           <a th:href="'/students/modify/' + ${student.getId()}" class="btn btn-secondary">Modifier  <i class="fa-solid fa-pen-to-square"></i></a>
-
-        </td>
-        <td>
-          <a th:href="'/students/subscribedTrainings/' + ${student.getId()}" class="btn btn-primary">View subscribed trainings</a>
+          <a th:href="'/students/subscribedTrainings/' + ${student.getId()}" class="btn btn-primary">Voir ses cours  <i class="fa-solid fa-eye"></i></a>
         </td>
 
       </tr>

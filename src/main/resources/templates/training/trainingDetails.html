@@ -7,43 +7,75 @@
 </head>
 <body>
 <div th:replace="_fragments/navbar :: navbar"></div>
-
-<div class="container">
-    <div>Nom de la formation</div>
-  <span th:text="${training.getName()}"></span>
-    <div>Niveau de la formation</div>
-  <span th:text="${training.getLevel().getName()}"></span>
-    <div>Catégorie de la formation</div>
-
-  <span th:text="${training.getCategory().getName()}"></span>
-    <div>Prix de la formation</div>
-
-  <span th:text="${training.getPrice()}"></span>
-    <div>Durée de la formation</div>
-
-  <span th:text="${training.getDuration()}"></span>
-    <div>Début de la formation : <span th:text="${training.getStartAt()}"></span></div>
-
-
-    <a th:href="'/training/' + ${training.getId()} + '/formers'" class="btn btn-primary">Ajouter formateur</a>
-    <div>Formateurs durant la formation: </div>
-
-    <div class="ms-3 d-flex justify-content-between w-25" th:each="former : ${training.getFormerList()}">
-      <div th:text="${former.getFullName()}"></div>
-        <button class="btn btn-danger">Supprimer</button>
+<div class="container mt-4 mb-4">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3 class="animate-charcter">Details de la formation : <span th:text="${training.getName()}"></span></h3>
     </div>
-
-    <a th:href="'/training/' + ${training.getId()} + '/students'" class="btn btn-primary">Ajouter étudiant</a>
-    <div>Etudiants inscrits : </div>
-
-  <div class="ms-3 d-flex justify-content-between w-25" th:each="student : ${training.getStudentsList()}">
-    <div th:text="${student.getFullName()}"></div>
-      <button class="btn btn-danger">Supprimer</button>
   </div>
-
 </div>
-</body>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <h3 class="text-center text-info">
+       Description
+      </h3>
+      <dl>
+        <dt>
+          <span>Début de la formation</span>
+        </dt>
+        <dd th:text="${training.getStartAt()}">
+        </dd>
+        <dt>
+          <span>Durée</span>
+        </dt>
+        <dd th:text="${training.getDuration()}">
+        </dd>
+        <dt>
+          <span>Prix</span>
+        </dt>
+        <dd th:text="${training.getPrice()}">
+        </dd>
+        <dt>
+          <span>Catégorie</span>
+        </dt>
+        <dd th:text="${training.getPrice()}">
+        </dd>
+        <dt>
+          <span>Niveau</span>
+        </dt>
+        <dd th:text="${training.getLevel().getName()}"></dd>
+        <dt>
+          <span>Statut</span>
+        </dt>
+        <dd th:if="${training.isOnline() == true}">Se passe en ligne</dd>
+        <dd th:if="${training.isOnline() == false}">Se passe en présentiel</dd>
+      </dl>  <a th:href="'/training/modify/' + ${training.getId()}" class="btn btn-secondary">Modifier  <i class="fa-solid fa-pen-to-square"></i></a>
+    </div>
+    <div class="col-md-4 text-center">
+      <h3 class="text-center text-warning">
+        Étudiants inscrits
+      </h3>
+      <th:block th:each="student : ${training.getStudentsList()}" class="d-flex row mb-16">
+          <span class="list-item" th:text="${student.getFullName()}"></span>
+          <a th:href="'/students/' + ${student.getId()}" class="btn btn-secondary">Détails  <i class="fa-solid fa-pen-to-square"></i></a>
+          <br>
+      </th:block>
+    </div>
+    <div class="col-md-4 text-center">
+      <h3 class="text-success text-center">
+        Professeurs inscrits
+      </h3>
+      <th:block th:each="former : ${training.getFormerList()}">
+      <ol>
+        <li class="list-item" th:text="${former.getFullName()}">
+        </li>
+      </ol>
+      </th:block>
+    </div>
+  </div>
+</div>
 <div th:replace="_fragments/footer"></div>
-
+</body>
 </html>
