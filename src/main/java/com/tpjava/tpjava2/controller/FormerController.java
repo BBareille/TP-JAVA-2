@@ -54,7 +54,7 @@ public class FormerController {
         if(former.isEmpty())
             return "redirect:";
 
-        model.addAttribute("student", former.get());
+        model.addAttribute("former", former.get());
 
         return "former/details";
     }
