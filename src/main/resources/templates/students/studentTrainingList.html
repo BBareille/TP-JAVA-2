@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Training list</title>
+    <div th:replace="_fragments/header :: bootstrap"></div>
+</head>
+<body>
+<div class="container">
+    <h2>Subscribed Trainings</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Selected Student: <span th:text="${student.getFullName()}"></span></h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Training Name</th>
+                            <th>Category</th>
+                            <th>Level</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="training : ${subscribedTrainings}">
+                            <td th:text="${training.getName()}"></td>
+                            <td th:text="${training.getCategory().getName()}"></td>
+                            <td th:text="${training.getLevel().getName()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/students/" class="btn btn-secondary">Back to Students List</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
