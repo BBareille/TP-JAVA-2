@@ -100,8 +100,6 @@ public class StudentController {
             return "students/studentTrainingList";
 
         }
-
-                return "redirect:/studients";
-
+            return "redirect:/students";
     }
 }
